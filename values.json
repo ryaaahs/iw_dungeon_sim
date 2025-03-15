@@ -1,6 +1,6 @@
 {
     "config": {
-        "simulated_hours": 48
+        "simulated_hours": 24
     },
     "player":
     {
@@ -18,48 +18,222 @@
             "monsters_hour": 485,
             "food_hour": 16,
 
-            "gold_min": 1,
-            "gold_max": 300,
+            "drops": {
+                "gold": {
+                    "gold_min": 1,
+                    "gold_max": 300,
+                    "rate": 0.8,
+                },
+                "log": {
+                    "name": "Birch Log",
+                    "gold_rate": 0.19,
+                },
+                "ore": {
+                    "name": "Silver Ore",
+                    "gold_rate": 0.19,
+                },
+                "flower": {
+                    "name": "Rose",
+                    "gold_rate": 0.19,
+                },
+                "fish": {
+                    "name": "Salmon",
+                    "gold_rate": 0.19,
+                },
+                "gem_one": {
+                    "name": "Topaz",
+                    "gold_rate": 0.01,
+                },
+                "gem_two": {
+                    "name": "Emerald",
+                    "gold_rate": 0.01,
+                },
+            }
         },
         {
             "level": 40,
             "monsters_hour": 439,
             "food_hour": 28,
 
-            "gold_min": 1,
-            "gold_max": 425,
+            "drops": {
+                "gold": {
+                    "gold_min": 1,
+                    "gold_max": 425,
+                    "rate": 0.8,
+                },
+                "log": {
+                    "name": "Teak Log",
+                    "gold_rate": 0.19,
+                },
+                "ore": {
+                    "name": "Gold Ore",
+                    "gold_rate": 0.19,
+                },
+                "flower": {
+                    "name": "Daisy",
+                    "gold_rate": 0.19,
+                },
+                "fish": {
+                    "name": "Bass",
+                    "gold_rate": 0.19,
+                },
+                "gem_one": {
+                    "name": "Emerald",
+                    "gold_rate": 0.01,
+                },
+                "gem_two": {
+                    "name": "Amethyst",
+                    "gold_rate": 0.01,
+                },
+            }
         },
         {
             "level": 55,
             "monsters_hour": 358,
             "food_hour": 44,
 
-            "gold_min": 1,
-            "gold_max": 550,
+            "drops": {
+                "gold": {
+                    "gold_min": 1,
+                    "gold_max": 550,
+                    "rate": 0.8,
+                },
+                "log": {
+                    "name": "Mahogany Log",
+                    "gold_rate": 0.19,
+                },
+                "ore": {
+                    "name": "Cobalt Ore",
+                    "gold_rate": 0.19,
+                },
+                "flower": {
+                    "name": "Lilac",
+                    "gold_rate": 0.19,
+                },
+                "fish": {
+                    "name": "Lobster",
+                    "gold_rate": 0.19,
+                },
+                "gem_one": {
+                    "name": "Amethyst",
+                    "gold_rate": 0.01,
+                },
+                "gem_two": {
+                    "name": "Citrine",
+                    "gold_rate": 0.01,
+                },
+            }
         },
         {
             "level": 70,
             "monsters_hour": 312,
             "food_hour": 64,
 
-            "gold_min": 1,
-            "gold_max": 700,
+            "drops": {
+                "gold": {
+                    "gold_min": 1,
+                    "gold_max": 700,
+                    "rate": 0.8,
+                },
+                "log": {
+                    "name": "Ironbark Log",
+                    "gold_rate": 0.19,
+                },
+                "ore": {
+                    "name": "Obsidian Ore",
+                    "gold_rate": 0.19,
+                },
+                "flower": {
+                    "name": "Hyacinth",
+                    "gold_rate": 0.19,
+                },
+                "fish": {
+                    "name": "Swordfish",
+                    "gold_rate": 0.19,
+                },
+                "gem_one": {
+                    "name": "Citrine",
+                    "gold_rate": 0.01,
+                },
+                "gem_two": {
+                    "name": "Diamond",
+                    "gold_rate": 0.01,
+                },
+            }
         },
         {
             "level": 85,
             "monsters_hour": 289,
             "food_hour": 104,
 
-            "gold_min": 1,
-            "gold_max": 900,
+            "drops": {
+                "gold": {
+                    "gold_min": 1,
+                    "gold_max": 900,
+                    "rate": 0.8,
+                },
+                "log": {
+                    "name": "Redwood Log",
+                    "gold_rate": 0.19,
+                },
+                "ore": {
+                    "name": "Astral Ore",
+                    "gold_rate": 0.19,
+                },
+                "flower": {
+                    "name": "Nemesia",
+                    "gold_rate": 0.19,
+                },
+                "fish": {
+                    "name": "Shark",
+                    "gold_rate": 0.19,
+                },
+                "gem_one": {
+                    "name": "Diamond",
+                    "gold_rate": 0.01,
+                },
+                "gem_two": {
+                    "name": "Moonstone",
+                    "gold_rate": 0.01,
+                },
+            }
         },
         {
             "level": 100,
             "monsters_hour": 219,
             "food_hour": 180,
 
-            "gold_min": 1,
-            "gold_max": 1250,
+            "drops": {
+                "gold": {
+                    "gold_min": 1,
+                    "gold_max": 1250,
+                    "rate": 0.8,
+                },
+                "log": {
+                    "name": "Ancient Log",
+                    "gold_rate": 0.19,
+                },
+                "ore": {
+                    "name": "Infernal Ore",
+                    "gold_rate": 0.19,
+                },
+                "flower": {
+                    "name": "Snapdragon",
+                    "gold_rate": 0.19,
+                },
+                "fish": {
+                    "name": "King Crab",
+                    "gold_rate": 0.19,
+                },
+                "gem_one": {
+                    "name": "Moonstone",
+                    "gold_rate": 0.01,
+                },
+                "gem_two": {
+                    "name": "Onyx",
+                    "gold_rate": 0.01,
+                },
+            }
         }
     ],
     "key_values":
@@ -88,5 +262,135 @@
             "level": 100,
             "cost": 1498,
         }
-    ]
+    ],
+    "logs": {
+        "Pine Log": {
+            "value": 18,
+        },
+        "Spruce Log": {
+            "value": 19,
+        },
+        "Birch Log": {
+            "value": 24,
+        },
+        "Teak Log": {
+            "value": 32,
+        },
+        "Mahogany Log": {
+            "value": 70,
+        },
+        "Ironbark Log": {
+            "value": 51,
+        },
+        "Redwood Log": {
+            "value": 57,
+        },
+        "Ancient Log": {
+            "value": 67,
+        },
+    },
+    "ore": {
+        "Copper Ore": {
+            "value": 19,
+        },
+        "Iron Ore": {
+            "value": 32,
+        },
+        "Silver Ore": {
+            "value": 16,
+        },
+        "Gold Ore": {
+            "value": 45,
+        },
+        "Cobalt Ore": {
+            "value": 45,
+        },
+        "Obsidian Ore": {
+            "value": 39,
+        },
+        "Astral Ore": {
+            "value": 46,
+        },
+        "Infernal Ore": {
+            "value": 52,
+        },
+    },
+    "flower": {
+        "Peony": {
+            "value": 25,
+        },
+        "Tulip": {
+            "value": 25,
+        },
+        "Rose": {
+            "value": 34,
+        },
+        "Daisy": {
+            "value": 41,
+        },
+        "Lilac": {
+            "value": 36,
+        },
+        "Hyacinth": {
+            "value": 42,
+        },
+        "Nemesia": {
+            "value": 45,
+        },
+        "Snapdragon": {
+            "value": 67,
+        },
+    },
+    "fish": {
+        "Shrimp": {
+            "value": 30,
+        },
+        "Cod": {
+            "value": 24,
+        },
+        "Salmon": {
+            "value": 47,
+        },
+        "Bass": {
+            "value": 24,
+        },
+        "Lobster": {
+            "value": 55,
+        },
+        "Swordfish": {
+            "value": 60,
+        },
+        "Shark": {
+            "value": 48,
+        },
+        "King Crab": {
+            "value": 65,
+        },
+    },
+    "gemstone": {
+        "Ruby": {
+            "value": 120,
+        },
+        "Topaz": {
+            "value": 240,
+        },
+        "Emerald": {
+            "value": 360,
+        },
+        "Amethyst": {
+            "value": 480,
+        },
+        "Citrine": {
+            "value": 600,
+        },
+        "Diamond": {
+            "value": 720,
+        },
+        "Moonstone": {
+            "value": 840,
+        },
+        "Onyx": {
+            "value": 960,
+        },
+    }
 }

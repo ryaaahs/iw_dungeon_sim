@@ -8,6 +8,11 @@ using namespace std;
 
 int main()
 {
+    // Updating the json
+    // Flower: ^Peony$|Tulip$|Rose$|Daisy$|Lilac$|Hyacinth$|Nemesia$|Snapdragon
+    // Fish: ^Shrimp$|Cod$|Salmon$|Bass$|Lobster$|Swordfish$|Shark$|King Crab
+
+
     // Random
     std::random_device seed;
     std::mt19937 gen{seed()}; // seed the generator
@@ -69,7 +74,7 @@ int main()
 
         std::cout << "\n";
 
-        std::uniform_int_distribution<> dist{values["dungeon"][i]["gold_min"].asInt(), values["dungeon"][i]["gold_max"].asInt()};
+        std::uniform_int_distribution<> dist{values["dungeon"][i]["drops"]["gold"]["gold_min"].asInt(), values["dungeon"][i]["drops"]["gold"]["gold_max"].asInt()};
         std::uniform_real_distribution<> dist_roll{0, 1};
 
         for(unsigned int j = 0; j < (simulated_hours * keys_per_hour); j++) {
