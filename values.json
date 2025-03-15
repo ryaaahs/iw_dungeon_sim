@@ -1,0 +1,92 @@
+{
+    "config": {
+        "simulated_hours": 48
+    },
+    "player":
+    {
+        "food_cost": 280,
+        "food_health": 240,
+        "potion_cost": 190,
+        "potion_speed": 127,
+        "skill_efficiency": 0.445,
+        "double_loot_chance": 0.276,
+        "insatiable": 1.4
+    },
+    "dungeon": [
+        {
+            "level": 25,
+            "monsters_hour": 485,
+            "food_hour": 16,
+
+            "gold_min": 1,
+            "gold_max": 300,
+        },
+        {
+            "level": 40,
+            "monsters_hour": 439,
+            "food_hour": 28,
+
+            "gold_min": 1,
+            "gold_max": 425,
+        },
+        {
+            "level": 55,
+            "monsters_hour": 358,
+            "food_hour": 44,
+
+            "gold_min": 1,
+            "gold_max": 550,
+        },
+        {
+            "level": 70,
+            "monsters_hour": 312,
+            "food_hour": 64,
+
+            "gold_min": 1,
+            "gold_max": 700,
+        },
+        {
+            "level": 85,
+            "monsters_hour": 289,
+            "food_hour": 104,
+
+            "gold_min": 1,
+            "gold_max": 900,
+        },
+        {
+            "level": 100,
+            "monsters_hour": 219,
+            "food_hour": 180,
+
+            "gold_min": 1,
+            "gold_max": 1250,
+        }
+    ],
+    "key_values":
+    [
+        {
+            "level": 25,
+            "cost": 899,
+        },
+        {
+            "level": 40,
+            "cost": 1000,
+        },
+        {
+            "level": 55,
+            "cost": 1475,
+        },
+        {
+            "level": 70,
+            "cost": 1400,
+        },
+        {
+            "level": 85,
+            "cost": 1300,
+        },
+        {
+            "level": 100,
+            "cost": 1498,
+        }
+    ]
+}
