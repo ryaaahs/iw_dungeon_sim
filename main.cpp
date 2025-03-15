@@ -40,6 +40,13 @@ int main()
         float time_per_key = HOUR_IN_SECONDS / keys_per_hour;
         float total_time_per_key_roll = 0;
 
+        int total_log = 0;
+        int total_ore = 0;
+        int total_flower = 0;
+        int total_fish = 0;
+        int total_gem_one = 0;
+        int total_gem_two = 0;
+
         std::cout << "---------------------------------------------------------" << "\n";
 
         std::cout << "Dungeon Level: " << values["dungeon"][i]["level"] << "\n";
@@ -110,25 +117,92 @@ int main()
 
             // Roll loot
             while(counter++ < rolls) {
-                if (0.8 >= dist_roll(gen)) {
+                if (values["dungeon"][i]["drops"]["gold"]["rate"].asFloat() >= dist_roll(gen)) {
                     generated_sim_gold += dist(gen);
+                }
+                if (values["dungeon"][i]["drops"]["log"]["rate"].asFloat() >= dist_roll(gen)) {
+                    total_log += 1;
+                }
+                if (values["dungeon"][i]["drops"]["ore"]["rate"].asFloat() >= dist_roll(gen)) {
+                    total_ore += 1;
+                }
+                if (values["dungeon"][i]["drops"]["flower"]["rate"].asFloat() >= dist_roll(gen)) {
+                    total_flower += 1;
+                }
+                if (values["dungeon"][i]["drops"]["fish"]["rate"].asFloat() >= dist_roll(gen)) {
+                    total_fish += 1;
+                }
+                if (values["dungeon"][i]["drops"]["gem_one"]["rate"].asFloat() >= dist_roll(gen)) {
+                    total_gem_one += 1;
+                }
+                if (values["dungeon"][i]["drops"]["gem_two"]["rate"].asFloat() >= dist_roll(gen)) {
+                    total_gem_two += 1;
                 }
             }
         }
 
-        std::cout << "Gross Gold Generated from Sim: " << generated_sim_gold << "\n";
-        std::cout << "Gross Gold Generated from Sim Per Hour: " << generated_sim_gold / simulated_hours << "\n";
-        std::cout << "Net Gold Generated from Sim: " << generated_sim_gold - (keys_cost_per_hour * simulated_hours) - sim_food_cost - sim_potion_cost << "\n";
-        std::cout << "Net Gold Generated from Sim Per Hour: " << (generated_sim_gold - (keys_cost_per_hour * simulated_hours) - sim_food_cost - sim_potion_cost) / simulated_hours << "\n";
-        std::cout << "Gross Gold Per Key: " << generated_sim_gold / (keys_per_hour * simulated_hours) << "\n";
-        std::cout << "Net Gold Per Key (Gross Gold Per Key - Key Cost): " << generated_sim_gold / (keys_per_hour * simulated_hours) - values["key_values"][i]["cost"].asInt() << "\n";
+        string log_name = values["dungeon"][i]["drops"]["log"]["name"].asString();
+        unsigned int log_value = total_log * values["logs"][log_name]["value"].asInt();
+
+        string ore_name = values["dungeon"][i]["drops"]["ore"]["name"].asString();
+        unsigned int ore_value = total_ore * values["ore"][ore_name]["value"].asInt();
+
+        string flower_name = values["dungeon"][i]["drops"]["flower"]["name"].asString();
+        unsigned int flower_value = total_flower * values["flower"][flower_name]["value"].asInt();
+
+        string fish_name = values["dungeon"][i]["drops"]["fish"]["name"].asString();
+        unsigned int fish_value = total_fish * values["fish"][fish_name]["value"].asInt();
+
+        string gemstone_one_name = values["dungeon"][i]["drops"]["gem_one"]["name"].asString();
+        unsigned int gem_one_value = total_gem_one * values["gemstone"][gemstone_one_name]["value"].asInt();
+
+        string gemstone_two_name = values["dungeon"][i]["drops"]["gem_two"]["name"].asString();
+        unsigned int gem_two_value = total_gem_two * values["gemstone"][gemstone_two_name]["value"].asInt();
+
+        std::cout << "Total " << log_name << ": " << total_log << "\n";
+        std::cout << "Gross value " << log_name << ": " << log_value << "\n";
+
+        std::cout << "Total " << ore_name << ": " << total_log << "\n";
+        std::cout << "Gross value " << ore_name << ": " << ore_value << "\n";
+
+        std::cout << "Total " << flower_name << ": " << total_flower << "\n";
+        std::cout << "Gross value " << flower_name << ": " << flower_value << "\n";
+
+        std::cout << "Total " << fish_name << ": " << total_fish << "\n";
+        std::cout << "Gross value " << fish_name << ": " << fish_value << "\n";
+
+        std::cout << "Total " << gemstone_one_name << ": " << total_gem_one << "\n";
+        std::cout << "Gross value " << gemstone_one_name << ": " << gem_one_value << "\n";
+
+        std::cout << "Total " << gemstone_two_name << ": " << total_gem_two << "\n";
+        std::cout << "Gross value " << gemstone_two_name << ": " << gem_two_value << "\n";
+
+        std::cout << "\n";
+
+        long long material_gross = log_value + ore_value + flower_value + fish_value + gem_one_value + gem_two_value;
+        long long material_net = material_gross * 0.95;
+
+        std::cout << "Total Gross value from materials: " << material_gross << "\n";
+        std::cout << "Total Net value from materials (5% tax): " << material_net << "\n";
+
+        long long generated_gross = generated_sim_gold + material_gross;
+        long long generated_net = generated_sim_gold + material_net;
+
+        std::cout << "\n";
+
+        std::cout << "Gross Gold Generated from Sim: " << generated_gross << "\n";
+        std::cout << "Gross Gold Generated from Sim Per Hour: " << generated_gross / simulated_hours << "\n";
+        std::cout << "Net Gold Generated from Sim: " << generated_net - (keys_cost_per_hour * simulated_hours) - sim_food_cost - sim_potion_cost << "\n";
+        std::cout << "Net Gold Generated from Sim Per Hour: " << (generated_net - (keys_cost_per_hour * simulated_hours) - sim_food_cost - sim_potion_cost) / simulated_hours << "\n";
+        std::cout << "Gross Gold Per Key: " << generated_gross / (keys_per_hour * simulated_hours) << "\n";
+        std::cout << "Net Gold Per Key: " << generated_net / (keys_per_hour * simulated_hours) << "\n";
 
         // Determine optimal key cost for setup
         int op_key_gold = values["key_values"][i]["cost"].asInt();
         long long op_net_gold = 0;
         bool profit_already = false;
 
-        if ((generated_sim_gold - ((op_key_gold * keys_per_hour) * simulated_hours) - sim_food_cost - sim_potion_cost) > 0) {
+        if ((generated_net - ((op_key_gold * keys_per_hour) * simulated_hours) - sim_food_cost - sim_potion_cost) > 0) {
             profit_already = true;
         }
 
@@ -137,7 +211,7 @@ int main()
                 break;
             }
 
-            op_net_gold = (generated_sim_gold - ((op_key_gold * keys_per_hour) * simulated_hours) - sim_food_cost - sim_potion_cost);
+            op_net_gold = (generated_net - ((op_key_gold * keys_per_hour) * simulated_hours) - sim_food_cost - sim_potion_cost);
 
             if (!profit_already && op_net_gold >= 0) {
                 break;

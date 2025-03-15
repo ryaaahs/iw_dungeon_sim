@@ -26,27 +26,27 @@
                 },
                 "log": {
                     "name": "Birch Log",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "ore": {
                     "name": "Silver Ore",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "flower": {
                     "name": "Rose",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "fish": {
                     "name": "Salmon",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "gem_one": {
                     "name": "Topaz",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
                 "gem_two": {
                     "name": "Emerald",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
             }
         },
@@ -63,27 +63,27 @@
                 },
                 "log": {
                     "name": "Teak Log",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "ore": {
                     "name": "Gold Ore",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "flower": {
                     "name": "Daisy",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "fish": {
                     "name": "Bass",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "gem_one": {
                     "name": "Emerald",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
                 "gem_two": {
                     "name": "Amethyst",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
             }
         },
@@ -95,32 +95,32 @@
             "drops": {
                 "gold": {
                     "gold_min": 1,
-                    "gold_max": 550,
+                    "gold_max": 5,
                     "rate": 0.8,
                 },
                 "log": {
                     "name": "Mahogany Log",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "ore": {
                     "name": "Cobalt Ore",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "flower": {
                     "name": "Lilac",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "fish": {
                     "name": "Lobster",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "gem_one": {
                     "name": "Amethyst",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
                 "gem_two": {
                     "name": "Citrine",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
             }
         },
@@ -137,27 +137,27 @@
                 },
                 "log": {
                     "name": "Ironbark Log",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "ore": {
                     "name": "Obsidian Ore",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "flower": {
                     "name": "Hyacinth",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "fish": {
                     "name": "Swordfish",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "gem_one": {
                     "name": "Citrine",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
                 "gem_two": {
                     "name": "Diamond",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
             }
         },
@@ -174,27 +174,27 @@
                 },
                 "log": {
                     "name": "Redwood Log",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "ore": {
                     "name": "Astral Ore",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "flower": {
                     "name": "Nemesia",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "fish": {
                     "name": "Shark",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "gem_one": {
                     "name": "Diamond",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
                 "gem_two": {
                     "name": "Moonstone",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
             }
         },
@@ -211,27 +211,27 @@
                 },
                 "log": {
                     "name": "Ancient Log",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "ore": {
                     "name": "Infernal Ore",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "flower": {
                     "name": "Snapdragon",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "fish": {
                     "name": "King Crab",
-                    "gold_rate": 0.19,
+                    "rate": 0.19,
                 },
                 "gem_one": {
                     "name": "Moonstone",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
                 "gem_two": {
                     "name": "Onyx",
-                    "gold_rate": 0.01,
+                    "rate": 0.01,
                 },
             }
         }
