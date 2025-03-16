@@ -4,13 +4,15 @@
     },
     "player":
     {
-        "food_cost": 280,
+        "food_cost": 290,
         "food_health": 240,
-        "potion_cost": 190,
+        "potion_cost": 245,
         "potion_speed": 127,
         "skill_efficiency": 0.445,
         "double_loot_chance": 0.276,
-        "insatiable": 1.4
+        "insatiable": 1.4,
+        "savage": 0.14,
+        "preserve_dungeon": 0.04
     },
     "dungeon": [
         {
@@ -23,6 +25,18 @@
                     "gold_min": 1,
                     "gold_max": 300,
                     "rate": 0.8,
+                },
+                "bone": {
+                    "name": "Medium Bone",
+                    "rate": 1,
+                },
+                "bone_one": {
+                    "name": "Fang",
+                    "rate": 0,
+                },
+                "bone_two": {
+                    "name": "Bone",
+                    "rate": 0,
                 },
                 "log": {
                     "name": "Birch Log",
@@ -61,6 +75,18 @@
                     "gold_max": 425,
                     "rate": 0.8,
                 },
+                "bone": {
+                    "name": "Medium Fang",
+                    "rate": 1,
+                },
+                "bone_one": {
+                    "name": "Medium Bone",
+                    "rate": 0,
+                },
+                "bone_two": {
+                    "name": "Fang",
+                    "rate": 0,
+                },
                 "log": {
                     "name": "Teak Log",
                     "rate": 0.19,
@@ -97,6 +123,18 @@
                     "gold_min": 1,
                     "gold_max": 5,
                     "rate": 0.8,
+                },
+                "bone": {
+                    "name": "Large Bone",
+                    "rate": 1,
+                },
+                "bone_one": {
+                    "name": "Medium Fang",
+                    "rate": 0,
+                },
+                "bone_two": {
+                    "name": "Medium Bone",
+                    "rate": 0,
                 },
                 "log": {
                     "name": "Mahogany Log",
@@ -135,6 +173,18 @@
                     "gold_max": 700,
                     "rate": 0.8,
                 },
+                "bone": {
+                    "name": "Large Fang",
+                    "rate": 1,
+                },
+                "bone_one": {
+                    "name": "Large Bone",
+                    "rate": 0,
+                },
+                "bone_two": {
+                    "name": "Medium Fang",
+                    "rate": 0,
+                },
                 "log": {
                     "name": "Ironbark Log",
                     "rate": 0.19,
@@ -172,6 +222,18 @@
                     "gold_max": 900,
                     "rate": 0.8,
                 },
+                "bone": {
+                    "name": "Giant Bone",
+                    "rate": 1,
+                },
+                "bone_one": {
+                    "name": "Large Fang",
+                    "rate": 0,
+                },
+                "bone_two": {
+                    "name": "Large Bone",
+                    "rate": 0,
+                },
                 "log": {
                     "name": "Redwood Log",
                     "rate": 0.19,
@@ -208,6 +270,18 @@
                     "gold_min": 1,
                     "gold_max": 1250,
                     "rate": 0.8,
+                },
+                "bone": {
+                    "name": "Giant Fang",
+                    "rate": 1,
+                },
+                "bone_one": {
+                    "name": "Giant Bone",
+                    "rate": 0,
+                },
+                "bone_two": {
+                    "name": "Large Fang",
+                    "rate": 0,
                 },
                 "log": {
                     "name": "Ancient Log",
@@ -256,14 +330,14 @@
         },
         {
             "level": 85,
-            "cost": 1300,
+            "cost": 1250,
         },
         {
             "level": 100,
-            "cost": 1498,
+            "cost": 1277,
         }
     ],
-    "logs": {
+    "log": {
         "Pine Log": {
             "value": 18,
         },
@@ -391,6 +465,32 @@
         },
         "Onyx": {
             "value": 960,
+        },
+    },
+    "bone": {
+        "Bone": {
+            "value": 46,
+        },
+        "Fang": {
+            "value": 80,
+        },
+        "Medium Bone": {
+            "value": 75,
+        },
+        "Medium Fang": {
+            "value": 62,
+        },
+        "Large Bone": {
+            "value": 75,
+        },
+        "Large Fang": {
+            "value": 73,
+        },
+        "Giant Bone": {
+            "value": 64,
+        },
+        "Giant Fang": {
+            "value": 79,
         },
     }
 }

@@ -11,6 +11,7 @@ int main()
     // Updating the json
     // Flower: ^Peony$|Tulip$|Rose$|Daisy$|Lilac$|Hyacinth$|Nemesia$|Snapdragon
     // Fish: ^Shrimp$|Cod$|Salmon$|Bass$|Lobster$|Swordfish$|Shark$|King Crab
+    // Bone: ^(?:\w+\s)?(bone|fang)$
 
 
     // Random
@@ -28,7 +29,8 @@ int main()
 
     unsigned int simulated_hours = values["config"]["simulated_hours"].asInt();
     float potion_cost_per_hour = (HOUR_IN_SECONDS / values["player"]["potion_speed"].asFloat()) * values["player"]["potion_cost"].asFloat();
-    float insatiable_cost_per_hour = ((HOUR_IN_SECONDS * values["player"]["insatiable"].asFloat()) / values["player"]["food_health"].asFloat()) * values["player"]["food_cost"].asFloat();
+    float insatiable_pies_per_hour = ((HOUR_IN_SECONDS * values["player"]["insatiable"].asFloat()) / values["player"]["food_health"].asFloat());
+    float insatiable_cost_per_hour = insatiable_pies_per_hour * values["player"]["food_cost"].asFloat();
 
     for (unsigned int i = 0; i < values["dungeon"].size(); i++) {
         float food_cost_per_hour = (values["player"]["food_cost"].asFloat() * values["dungeon"][i]["food_hour"].asFloat()) + insatiable_cost_per_hour;
@@ -39,7 +41,12 @@ int main()
         long long generated_sim_gold = 0;
         float time_per_key = HOUR_IN_SECONDS / keys_per_hour;
         float total_time_per_key_roll = 0;
+        int total_loot_cycles = 0;
+        int total_keys_used = 0;
 
+        int total_bone = 0;
+        int total_bone_one = 0;
+        int total_bone_two = 0;
         int total_log = 0;
         int total_ore = 0;
         int total_flower = 0;
@@ -50,7 +57,12 @@ int main()
         std::cout << "---------------------------------------------------------" << "\n";
 
         std::cout << "Dungeon Level: " << values["dungeon"][i]["level"] << "\n";
-        std::cout << "Food Cost Per Hour: " << food_cost_per_hour << "\n";
+        std::cout << "Insatiable Pies Per Hour: " << insatiable_pies_per_hour << "\n";
+        std::cout << "Insatiable Pies Cost Per Hour: " << insatiable_cost_per_hour << "\n";
+        std::cout << "Pies Per Hour: " << values["dungeon"][i]["food_hour"].asFloat() << "\n";
+        std::cout << "Pies Cost Per Hour: " << values["dungeon"][i]["food_hour"].asFloat() * values["player"]["food_cost"].asFloat() << "\n";
+        std::cout << "Total Pies Per Hour: " << insatiable_pies_per_hour + values["dungeon"][i]["food_hour"].asFloat() << "\n";
+        std::cout << "Total Food Cost Per Hour: " << food_cost_per_hour << "\n";
         std::cout << std::setprecision(DISPLAY_PRECISION) << "Food Cost Per Day: " << food_cost_per_hour * HOURS_IN_DAY << "\n";
         std::cout << std::setprecision(DISPLAY_PRECISION) << "Food Cost Sim: " << sim_food_cost << "\n";
 
@@ -62,29 +74,16 @@ int main()
 
         std::cout << "\n";
 
-        std::cout << "Keys Per Hour: " << keys_per_hour << "\n";
-        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Per Day: " << keys_per_hour * HOURS_IN_DAY << "\n";
-        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Sim: " << keys_per_hour * simulated_hours << "\n";
-
-        std::cout << "\n";
-
-        std::cout << "Loot Cycles Per Hour: " << keys_per_hour * LOOT_ROLLS_PER_KEY << "\n";
-        std::cout << std::setprecision(DISPLAY_PRECISION) << "Loot Cycles Per Day: " << (keys_per_hour * LOOT_ROLLS_PER_KEY) * HOURS_IN_DAY << "\n";
-        std::cout << std::setprecision(DISPLAY_PRECISION) << "Loot Cycles Sim: " << (keys_per_hour * LOOT_ROLLS_PER_KEY) * simulated_hours << "\n";
-
-        std::cout << "\n";
-
-        std::cout << "Keys Cost: " << values["key_values"][i]["cost"].asInt() << "\n";
-        std::cout << "Keys Cost Per Hour: " << keys_cost_per_hour << "\n";
-        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Cost Per Day: " << keys_cost_per_hour * HOURS_IN_DAY << "\n";
-        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Cost Sim: " << keys_cost_per_hour * simulated_hours << "\n";
-
-        std::cout << "\n";
-
         std::uniform_int_distribution<> dist{values["dungeon"][i]["drops"]["gold"]["gold_min"].asInt(), values["dungeon"][i]["drops"]["gold"]["gold_max"].asInt()};
         std::uniform_real_distribution<> dist_roll{0, 1};
 
-        for(unsigned int j = 0; j < (simulated_hours * keys_per_hour); j++) {
+        for(int j = 0; j < (simulated_hours * keys_per_hour); ++j) {
+            ++total_keys_used;
+
+            if (values["player"]["preserve_dungeon"].asFloat() >= dist_roll(gen)) {
+                j -= 1;
+            }
+
             total_time_per_key_roll += time_per_key;
             unsigned counter = 0;
             unsigned rolls = 3;
@@ -102,21 +101,34 @@ int main()
                 +1 loot
             */
 
-            if (values["player"]["double_loot_chance"] >= dist_roll(gen)) {
+            if (values["player"]["double_loot_chance"].asFloat() >= dist_roll(gen)) {
                 rolls += 3;
             }
 
             // Check for efficiency
-            if (values["player"]["skill_efficiency"] >= dist_roll(gen)) {
+            if (values["player"]["skill_efficiency"].asFloat() >= dist_roll(gen)) {
                 rolls += 3;
-                j++;
-                if (values["player"]["double_loot_chance"] >= dist_roll(gen)) {
+                ++j;
+                ++total_keys_used;
+
+                if (values["player"]["preserve_dungeon"].asFloat() >= dist_roll(gen)) {
+                    j -= 1;
+                }
+
+                if (values["player"]["double_loot_chance"].asFloat() >= dist_roll(gen)) {
                     rolls += 3;
                 }
             }
 
             // Roll loot
             while(counter++ < rolls) {
+                if (values["player"]["savage"].asFloat() >= dist_roll(gen)) {
+                    total_bone_one += 1;
+                    total_bone_two += 1;
+                } else {
+                    total_bone += 1;
+                }
+
                 if (values["dungeon"][i]["drops"]["gold"]["rate"].asFloat() >= dist_roll(gen)) {
                     generated_sim_gold += dist(gen);
                 }
@@ -139,10 +151,22 @@ int main()
                     total_gem_two += 1;
                 }
             }
+            total_loot_cycles += rolls;
         }
 
+        std::cout << "\n";
+
+        string bone_name = values["dungeon"][i]["drops"]["bone"]["name"].asString();
+        unsigned int bone_value = total_bone * values["bone"][bone_name]["value"].asInt();
+
+        string bone_one_name = values["dungeon"][i]["drops"]["bone_one"]["name"].asString();
+        unsigned int bone_one_value = total_bone_one * values["bone"][bone_one_name]["value"].asInt();
+
+        string bone_two_name = values["dungeon"][i]["drops"]["bone_two"]["name"].asString();
+        unsigned int bone_two_value = total_bone_two * values["bone"][bone_two_name]["value"].asInt();
+
         string log_name = values["dungeon"][i]["drops"]["log"]["name"].asString();
-        unsigned int log_value = total_log * values["logs"][log_name]["value"].asInt();
+        unsigned int log_value = total_log * values["log"][log_name]["value"].asInt();
 
         string ore_name = values["dungeon"][i]["drops"]["ore"]["name"].asString();
         unsigned int ore_value = total_ore * values["ore"][ore_name]["value"].asInt();
@@ -158,6 +182,15 @@ int main()
 
         string gemstone_two_name = values["dungeon"][i]["drops"]["gem_two"]["name"].asString();
         unsigned int gem_two_value = total_gem_two * values["gemstone"][gemstone_two_name]["value"].asInt();
+
+        std::cout << "Total " << bone_name << ": " << total_bone << "\n";
+        std::cout << "Gross value " << bone_name << ": " << bone_value << "\n";
+
+        std::cout << "Total " << bone_one_name << ": " << total_bone_one << "\n";
+        std::cout << "Gross value " << bone_one_name << ": " << bone_one_value << "\n";
+
+        std::cout << "Total " << bone_two_name << ": " << total_bone_two << "\n";
+        std::cout << "Gross value " << bone_two_name << ": " << bone_two_value << "\n";
 
         std::cout << "Total " << log_name << ": " << total_log << "\n";
         std::cout << "Gross value " << log_name << ": " << log_value << "\n";
@@ -179,7 +212,7 @@ int main()
 
         std::cout << "\n";
 
-        long long material_gross = log_value + ore_value + flower_value + fish_value + gem_one_value + gem_two_value;
+        long long material_gross = log_value + ore_value + flower_value + fish_value + gem_one_value + gem_two_value + bone_value + bone_one_value + bone_two_value;
         long long material_net = material_gross * 0.95;
 
         std::cout << "Total Gross value from materials: " << material_gross << "\n";
@@ -231,9 +264,25 @@ int main()
         std::cout << "\n";
 
         std::cout << "Simulated Hours: " << simulated_hours << "\n";
-        std::cout << "Total Time Spent: " << total_time_per_key_roll / HOUR_IN_SECONDS << "\n";
-        std::cout << "Percent of Simulated Hours to Total Time Spent: " << (total_time_per_key_roll / HOUR_IN_SECONDS ) / simulated_hours  << "\n";
-        std::cout << "To do the full Simulated Hours (" << simulated_hours << "h), you need an additional (35-40%) keys: " << (simulated_hours * keys_per_hour) * 0.35 << " or " << (simulated_hours * keys_per_hour) * 0.4 << "\n";
+        std::cout << "Total Keys used: " << total_keys_used << "\n";
+        std::cout << "Loot Cycles Per Hour: " << (total_loot_cycles / simulated_hours) << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Loot Cycles Sim: " << total_loot_cycles << "\n";
+        std::cout << "Keys Per Hour: " << keys_per_hour << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Per Day: " << keys_per_hour * HOURS_IN_DAY << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Sim: " << keys_per_hour * simulated_hours << "\n";
+
+        std::cout << "\n";
+
+        std::cout << "Estimated Loot Cycles Per Hour: " << ((keys_per_hour * LOOT_ROLLS_PER_KEY) * (1 + values["player"]["preserve_dungeon"].asFloat())) << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Estimated Loot Cycles Per Day: " << ((keys_per_hour * LOOT_ROLLS_PER_KEY) * (1 + values["player"]["preserve_dungeon"].asFloat())) * HOURS_IN_DAY << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Estimated Loot Cycles Sim: " << ((keys_per_hour * LOOT_ROLLS_PER_KEY) * (1 + values["player"]["preserve_dungeon"].asFloat())) * simulated_hours << "\n";
+
+        std::cout << "\n";
+
+        std::cout << "Keys Cost: " << values["key_values"][i]["cost"].asInt() << "\n";
+        std::cout << "Keys Cost Per Hour: " << keys_cost_per_hour << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Cost Per Day: " << keys_cost_per_hour * HOURS_IN_DAY << "\n";
+        std::cout << std::setprecision(DISPLAY_PRECISION) << "Keys Cost Sim: " << keys_cost_per_hour * simulated_hours << "\n";
 
         std::cout << "\n";
 
