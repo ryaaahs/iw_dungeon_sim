@@ -1,6 +1,7 @@
 {
     "config": {
-        "simulated_hours": 24
+        "simulated_hours": 24,
+        "simple_display": true
     },
     "player":
     {

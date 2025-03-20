@@ -37,3 +37,4 @@
 *.layout
 
 values.json
+.vscode
