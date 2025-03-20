@@ -35,3 +35,5 @@
 *.cbp
 *.depend
 *.layout
+
+values.json

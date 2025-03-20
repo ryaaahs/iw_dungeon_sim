@@ -130,7 +130,14 @@ int main()
                 }
 
                 if (values["dungeon"][i]["drops"]["gold"]["rate"].asFloat() >= dist_roll(gen)) {
+
                     generated_sim_gold += dist(gen);
+
+                    if (values["player"]["additional_coins"].asFloat() > 0) {
+                        if (values["player"]["additional_coins"].asFloat() >= dist_roll(gen)) {
+                            generated_sim_gold += dist(gen);
+                        }
+                    }
                 }
                 if (values["dungeon"][i]["drops"]["log"]["rate"].asFloat() >= dist_roll(gen)) {
                     total_log += 1;

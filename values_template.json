@@ -4,15 +4,16 @@
     },
     "player":
     {
-        "food_cost": 290,
+        "food_cost": 280,
         "food_health": 240,
-        "potion_cost": 245,
+        "potion_cost": 525,
         "potion_speed": 127,
-        "skill_efficiency": 0.445,
-        "double_loot_chance": 0.276,
+        "skill_efficiency": 0.45,
+        "double_loot_chance": 0.361,
         "insatiable": 1.4,
         "savage": 0.14,
-        "preserve_dungeon": 0.04
+        "preserve_dungeon": 0.04,
+        "additional_coins": 0.03,
     },
     "dungeon": [
         {
@@ -330,7 +331,7 @@
         },
         {
             "level": 85,
-            "cost": 1250,
+            "cost": 1008,
         },
         {
             "level": 100,
