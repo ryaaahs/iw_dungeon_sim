@@ -9,12 +9,11 @@
         "food_health": 0,
         "potion_cost": 0,
         "potion_speed": 0,
-        "skill_efficiency": 0.0,
         "double_loot_chance": 0.0,
-        "insatiable": 0.0,
-        "savage": 0.0,
-        "preserve_dungeon": 0.0,
-        "additional_coins": 0.0
+        "insatiable_consume_rate": 0.0,
+        "savage_bone_drop_chance": 0.0,
+        "preserve_dungeon_chance": 0.0,
+        "additional_coins_chance": 0.0
     },
     "dungeon": [
         {
