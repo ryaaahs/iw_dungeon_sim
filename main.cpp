@@ -151,13 +151,16 @@ int main()
                 Monster estimate already includes the eff proc
                 So all we need to calculate is the rolls/double loot chance
             */
-
-            if (values["player"]["double_loot_chance"].asFloat() >= drop_roll()) {
-                rolls += 3;
+           // Each loot roll has a chance to double (extra roll)
+            for (int i = 0; i < 3; i++) {
+                if (values["player"]["double_loot_chance"].asFloat() >= drop_roll()) {
+                    rolls += 1;
+                }
             }
-
+            
             // Roll loot
             while(counter++ < rolls) {
+                // Roll for savage and determine which low tier bone we get
                 if (values["player"]["savage_bone_drop_chance"].asFloat() >= drop_roll()) {
                     for (int i = 0; i < 2; i++) {
                         if(flip_roll() == 1) {
