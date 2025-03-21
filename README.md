@@ -20,41 +20,42 @@ Values that need to be updated:
 
 Once the json is updated, you can compile the source using any cpp compiler of your choice.
 
-## Example:
+## Example Output:
 ```
 ---------------------------------------------------------
-Dungeon Level: 100
-Food Cost Per Day: 1350720
-Potion Cost Per Hour: 14881.8896484375
+Dungeon Level: 85
+Food Cost Per Day: 870000
+Potion Cost Per Day: 353763.78125
 
-Total Gross value from materials: 1117966
-Total Net value from materials (5% tax): 1062067
+Total Gross value from materials: 1540781
+Total Net value from materials (5% tax): 1463741
 
-Gross Gold Generated from Sim: 4995301
-Gross Gold Generated from Sim Per Hour: 208137
-Net Gold Generated from Sim: 994212.625
-Net Gold Generated from Sim Per Hour: 41425.52734375
-Gross Gold Per Key: 2851.19921875
-Net Gold Per Key: 2819.29345703125
+Gross Gold Generated from Sim: 5310137
+Gross Gold Generated from Sim Per Hour: 221255
+Net Gold Generated from Sim: 889333.25
+Net Gold Generated from Sim Per Hour: 37055.55078125
+Gross Gold Per Key: 912
+Net Gold Per Key: 880
 
 Simulated Hours: 24
-Total Keys used: 1819
-Loot Cycles Per Hour: 311
-Loot Cycles Sim: 7473
-Keys Per Hour: 73
-Keys Per Day: 1752
-Keys Sim: 1752
+Total Keys used: 2400
+Total Keys Preserved: 112
+Loot Cycles Per Hour: 424
+Loot Cycles Sim: 10199
+Keys Per Hour: 100
+Keys Per Day: 2400
+Keys Sim: 2400
 
-Estimated Loot Cycles Per Hour: 227.759994506836
-Estimated Loot Cycles Per Day: 5466.23974609375
-Estimated Loot Cycles Sim: 5466.23974609375
+Estimated Loot Cycles Per Hour: 312
+Estimated Loot Cycles Per Day: 7488
+Estimated Loot Cycles Sim: 7488
 
-Keys Cost: 1277
-Keys Cost Per Hour: 93221
-Keys Cost Per Day: 2237304
-Keys Cost Sim: 2237304
+Keys Cost: 1300
+Keys Cost Per Hour: 130000
+Keys Cost Per Day: 3120000
+Keys Cost Sim: 3120000
 
-Using the gold to pay for all costs.
-The Optimal Net Zero Key Cost is: 1844
+Using the gold+materials to pay for all costs.
+The Optimal Net Zero Key Cost is: 1670
 ---------------------------------------------------------
 ```
