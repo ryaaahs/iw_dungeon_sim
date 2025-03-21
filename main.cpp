@@ -48,13 +48,14 @@ int main()
 
     float food_cost_per_hour = 0.0;
     float sim_food_cost = 0.0;
-    float keys_per_hour = 0;
+    unsigned int keys_per_hour = 0;
     float keys_cost_per_hour = 0;
 
     long long generated_sim_gold = 0;
 
     int total_loot_cycles = 0;
     int total_keys_used = 0;
+    int total_preserved_keys = 0;
     int total_bone = 0;
     int total_bone_one = 0;
     int total_bone_two = 0;
@@ -78,6 +79,7 @@ int main()
         generated_sim_gold = 0;
         total_loot_cycles = 0;
         total_keys_used = 0;
+        total_preserved_keys = 0;
 
         total_bone = 0;
         total_bone_one = 0;
@@ -122,11 +124,13 @@ int main()
 
         std::uniform_int_distribution<> dist{values["dungeon"][i]["drops"]["gold"]["gold_min"].asInt(), values["dungeon"][i]["drops"]["gold"]["gold_max"].asInt()};
 
-        for(int j = 0; j < (SIMULATED_HOURS * keys_per_hour); ++j) {
+        for(unsigned int j = 0; j < (SIMULATED_HOURS * keys_per_hour); ++j) {
             ++total_keys_used;
 
             if (values["player"]["preserve_dungeon_chance"].asFloat() >= drop_roll()) {
                 j -= 1;
+                total_keys_used -= 1;
+                total_preserved_keys += 1;
             }
 
             counter = 0;
@@ -311,6 +315,7 @@ int main()
 
         std::cout << "Simulated Hours: " << SIMULATED_HOURS << "\n";
         std::cout << "Total Keys used: " << total_keys_used << "\n";
+        std::cout << "Total Keys Preserved: " << total_preserved_keys << "\n";
         std::cout << "Loot Cycles Per Hour: " << (total_loot_cycles / SIMULATED_HOURS) << "\n";
         std::cout << std::setprecision(DISPLAY_PRECISION) << "Loot Cycles Sim: " << total_loot_cycles << "\n";
         std::cout << "Keys Per Hour: " << keys_per_hour << "\n";
